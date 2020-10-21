@@ -12,6 +12,13 @@ const routes = [
     },
   },
   {
+    name: "logon",
+    component: () => import("./view/logon"),
+    meta: {
+      title: "注册",
+    },
+  },
+  {
     name: "main",
     component: () => import("./view/main"),
     children: [
@@ -43,10 +50,10 @@ const routes = [
     },
   },
   {
-    name: "user",
-    component: () => import("./view/user"),
+    name: "order",
+    component: () => import("./view/order"),
     meta: {
-      title: "会员中心",
+      title: "下单",
     },
   },
   {

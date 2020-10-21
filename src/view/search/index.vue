@@ -21,7 +21,7 @@
         :desc="title"
         :title="item.trainNumber"
         thumb="https://blog.geohey.com/content/images/2018/04/high-speed-train.jpg"
-        @click="cardClickHandler"
+        @click="cardClickHandler(item)"
       >
         <template #desc>
           <p>{{ title }}</p>
@@ -30,10 +30,16 @@
       <van-sku
         :show-add-cart-btn="false"
         v-model="showSku"
+        :goods-id="selectedTrainNumber"
         :sku="sku"
         :goods="goods"
+        :quota="1"
         @buy-clicked="buyClickHandler"
-      ></van-sku>
+      >
+        <template #sku-header-extra>
+          {{ selectedTrainNumber }}
+        </template>
+      </van-sku>
     </van-list>
   </div>
 </template>
@@ -55,25 +61,44 @@ export default {
       loading: false,
       finished: false,
       showSku: false,
+      selectedTrainNumber: "",
       sku: {
         // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
         // 可以理解为一个商品可以有多个规格类目，一个规格类目下可以有多个规格值。
         tree: [
           {
-            k: "颜色", // skuKeyName：规格类目名称
+            k: "动车座位", // skuKeyName：规格类目名称
             k_s: "s1", // skuKeyStr：sku 组合列表（下方 list）中当前类目对应的 key 值，value 值会是从属于当前类目的一个规格值 id
             v: [
               {
                 id: "1", // skuValueId：规格值 id
-                name: "红色", // skuValueName：规格值名称
-                imgUrl: "https://img.yzcdn.cn/vant/ipad.jpeg", // 规格类目图片，只有第一个规格类目可以定义图片
-                previewImgUrl: "https://img.yzcdn.cn/2.jpg", // 用于预览显示的规格类目图片
+                name: "A座", // skuValueName：规格值名称
+                imgUrl: require("../../assets/img/seat.png"), // 规格类目图片，只有第一个规格类目可以定义图片
+                previewImgUrl: require("../../assets/img/seat.png"), // 用于预览显示的规格类目图片
               },
               {
                 id: "2",
-                name: "蓝色",
-                imgUrl: "https://img.yzcdn.cn/2.jpg",
-                previewImgUrl: "https://img.yzcdn.cn/2.jpg",
+                name: "B座",
+                imgUrl: require("../../assets/img/seat.png"), // 规格类目图片，只有第一个规格类目可以定义图片
+                previewImgUrl: require("../../assets/img/seat.png"), // 用于预览显示的规格类目图片
+              },
+              {
+                id: "3",
+                name: "C座",
+                imgUrl: require("../../assets/img/seat.png"), // 规格类目图片，只有第一个规格类目可以定义图片
+                previewImgUrl: require("../../assets/img/seat.png"), // 用于预览显示的规格类目图片
+              },
+              {
+                id: "4",
+                name: "D座",
+                imgUrl: require("../../assets/img/seat.png"), // 规格类目图片，只有第一个规格类目可以定义图片
+                previewImgUrl: require("../../assets/img/seat.png"), // 用于预览显示的规格类目图片
+              },
+              {
+                id: "5",
+                name: "F座",
+                imgUrl: require("../../assets/img/seat.png"), // 规格类目图片，只有第一个规格类目可以定义图片
+                previewImgUrl: require("../../assets/img/seat.png"), // 用于预览显示的规格类目图片
               },
             ],
             largeImageMode: true, //  是否展示大图模式
@@ -82,10 +107,33 @@ export default {
         // 所有 sku 的组合列表，比如红色、M 码为一个 sku 组合，红色、S 码为另一个组合
         list: [
           {
-            id: 2259, // skuId
+            id: 1, // skuId
             s1: "1", // 规格类目 k_s 为 s1 的对应规格值 id
-            s2: "2", // 规格类目 k_s 为 s2 的对应规格值 id
-            price: 100, // 价格（单位分）
+            price: (Math.random() * 80000 + 2000).toFixed(2), // 价格（单位分）
+            stock_num: 110, // 当前 sku 组合对应的库存
+          },
+          {
+            id: 2, // skuId
+            s1: "2", // 规格类目 k_s 为 s1 的对应规格值 id
+            price: (Math.random() * 80000 + 2000).toFixed(2), // 价格（单位分）
+            stock_num: 110, // 当前 sku 组合对应的库存
+          },
+          {
+            id: 3, // skuId
+            s1: "3", // 规格类目 k_s 为 s1 的对应规格值 id
+            price: (Math.random() * 80000 + 2000).toFixed(2), // 价格（单位分）
+            stock_num: 110, // 当前 sku 组合对应的库存
+          },
+          {
+            id: 4, // skuId
+            s1: "4", // 规格类目 k_s 为 s1 的对应规格值 id
+            price: (Math.random() * 80000 + 2000).toFixed(2), // 价格（单位分）
+            stock_num: 110, // 当前 sku 组合对应的库存
+          },
+          {
+            id: 5, // skuId
+            s1: "5", // 规格类目 k_s 为 s1 的对应规格值 id
+            price: (Math.random() * 80000 + 2000).toFixed(2), // 价格（单位分）
             stock_num: 110, // 当前 sku 组合对应的库存
           },
         ],
@@ -97,14 +145,15 @@ export default {
       },
       goods: {
         // 默认商品 sku 缩略图
-        picture: "https://img.yzcdn.cn/vant/ipad.jpeg",
+        picture:
+          "https://blog.geohey.com/content/images/2018/04/high-speed-train.jpg",
       },
     };
   },
   computed: {
     title() {
       const { from, to, date } = this.$route.query;
-      return `${from}
+      return `${from} ->
       ${to}
       ${date}`;
     },
@@ -113,7 +162,9 @@ export default {
     backHandler() {
       this.$router.go(-1);
     },
-    cardClickHandler() {
+    cardClickHandler(item) {
+      const { trainNumber } = item;
+      this.selectedTrainNumber = trainNumber;
       this.showSku = true;
     },
     onLoad() {
@@ -139,8 +190,20 @@ export default {
         }
       }, 1000);
     },
-    buyClickHandler() {
-
+    buyClickHandler(sku) {
+      const {
+        selectedSkuComb: { id },
+      } = sku;
+      const { selectedTrainNumber } = this;
+      const { date } = this.$route.query;
+      this.$router.push({
+        path: "/order",
+        query: {
+          trainNumber: selectedTrainNumber,
+          seatId: id,
+          date,
+        },
+      });
     },
   },
 };

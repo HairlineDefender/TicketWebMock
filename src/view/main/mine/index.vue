@@ -1,23 +1,23 @@
 <template>
   <div>
-    <img class="user-poster" src="../../../../public/header.png" />
+    <img class="user-poster" src="../../../assets/img/header.png" />
     <van-row class="user-links">
-      <van-col span="6">
+      <van-col span="8">
         <van-icon name="pending-payment" />
         待付款
       </van-col>
-      <van-col span="6">
-        <van-icon name="records" />
-        待接单
+      <van-col span="8">
+        <van-icon name="balance-list-o" />
+        已支付
       </van-col>
-      <van-col span="6">
+      <van-col span="8">
         <van-icon name="tosend" />
-        待发货
+        售后订单
       </van-col>
-      <van-col span="6">
+      <!-- <van-col span="6">
         <van-icon name="logistics" />
-        已发货
-      </van-col>
+        全部订单
+      </van-col> -->
     </van-row>
 
     <van-cell-group class="user-group">
@@ -25,9 +25,9 @@
     </van-cell-group>
 
     <van-cell-group>
-      <van-cell icon="points" title="我的积分" is-link />
-      <van-cell icon="gold-coin-o" title="我的优惠券" is-link />
-      <van-cell icon="gift-o" title="我收到的礼物" is-link />
+      <van-cell icon="friends-o" title="常用旅客" is-link />
+      <van-cell icon="label-o" title="实名认证" is-link />
+      <van-cell icon="chat-o" title="客服反馈" is-link />
     </van-cell-group>
   </div>
 </template>

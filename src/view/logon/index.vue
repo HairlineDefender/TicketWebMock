@@ -13,29 +13,27 @@
         />
         <van-field
           v-model="password"
-          label="密码 "
+          label="密码"
           type="password"
           left-icon="coupon-o"
           placeholder="输入密码"
           :rules="[{ required: true, message: '请填写密码' }]"
         />
+        <van-field
+          v-model="rePassword"
+          label="重复密码"
+          type="password"
+          left-icon="coupon-o"
+          placeholder="输入密码"
+          :rules="[{ required: true, message: '请再次填写密码' }]"
+        />
         <van-button
           round
           block
           :loading="isLoading"
-          loading-text="登录中..."
+          loading-text="注册中..."
           type="primary"
-          class="log-button"
           native-type="submit"
-          >立即登录
-        </van-button>
-        <van-button
-          round
-          block
-          color="blue"
-          native-type="button"
-          class="log-button"
-          to="logon"
           >立即注册
         </van-button>
       </van-form>
@@ -44,7 +42,17 @@
 </template>
 
 <script>
-import { Row, Col, Icon, Cell, CellGroup, Field, Button, Form } from "vant";
+import {
+  Row,
+  Col,
+  Icon,
+  Cell,
+  CellGroup,
+  Field,
+  Button,
+  Form,
+  Notify,
+} from "vant";
 
 export default {
   components: {
@@ -61,18 +69,22 @@ export default {
     return {
       username: "",
       password: "",
+      rePassword: "",
       isLoading: false,
     };
   },
   methods: {
     loginHandler() {
-      const { username, password } = this;
-      if (username === "admin" && password === "123456") {
+      const { username, password, rePassword } = this;
+      if (username && password === rePassword) {
         this.isLoading = true;
-        setTimeout(() => {
+        return setTimeout(() => {
           this.isLoading = false;
           this.$router.push("/main/home");
         }, 1000);
+      }
+      if (password !== rePassword) {
+        Notify("两次输入的密码必须一致");
       }
     },
   },
@@ -80,9 +92,6 @@ export default {
 </script>
 
 <style lang="less">
-.log-button {
-  margin-top: 5px;
-}
 .user {
   &-poster {
     width: 100%;

@@ -2,7 +2,7 @@
   <div>
     <img
       class="user-poster"
-      src="../../../../public/header.png"
+      src="../../../assets/img/header.png"
     />
 
     <van-cell-group>
