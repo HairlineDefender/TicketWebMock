@@ -61,6 +61,7 @@ export default {
       loading: false,
       finished: false,
       showSku: false,
+      currentItem: null,
       selectedTrainNumber: "",
       sku: {
         // 所有sku规格类目与其值的从属关系，比如商品有颜色和尺码两大类规格，颜色下面又有红色和蓝色两个规格值。
@@ -163,8 +164,19 @@ export default {
       this.$router.go(-1);
     },
     cardClickHandler(item) {
-      const { trainNumber } = item;
+      const { trainNumber, price } = item;
       this.selectedTrainNumber = trainNumber;
+      this.sku.price = price;
+      this.sku.list = [];
+      ["1", "2", "3", "4", "5"].forEach((s, id) => {
+        this.sku.list.push({
+          id: id, // skuId
+          s1: s, // 规格类目 k_s 为 s1 的对应规格值 id
+          price: price * 100, // 价格（单位分）
+          stock_num: 110, // 当前 sku 组合对应的库存
+        });
+      });
+      this.currentItem = item;
       this.showSku = true;
     },
     onLoad() {
@@ -202,6 +214,7 @@ export default {
           trainNumber: selectedTrainNumber,
           seatId: id,
           date,
+          price: this.currentItem.price,
         },
       });
     },

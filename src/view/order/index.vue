@@ -17,9 +17,10 @@
       @edit="onEdit"
     />
     <van-submit-bar
-      :price="3050"
+      :price="price"
       button-text="提交订单"
       @submit="submitHandler"
+      :loading="isLoading"
     />
   </div>
 </template>
@@ -37,6 +38,8 @@ export default {
   data() {
     return {
       chosenAddressId: "1",
+      price: 0,
+      isLoading: false,
       list: [
         {
           id: "1",
@@ -52,6 +55,7 @@ export default {
           address: "浙江省杭州市拱墅区莫干山路 50 号",
         },
       ],
+      disabledList: [],
     };
   },
   computed: {
@@ -71,8 +75,16 @@ export default {
       Toast("编辑地址:" + index);
     },
     submitHandler() {
-      this.$router.push("/main/home");
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+        this.$router.push("/main/home");
+      }, 700);
     },
+  },
+  mounted() {
+    const { price } = this.$route.query;
+    this.price = parseInt(price * 100);
   },
 };
 </script>
