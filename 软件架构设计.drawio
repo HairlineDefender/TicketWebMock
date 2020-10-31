@@ -1,0 +1,28 @@
+<mxfile host="65bd71144e" modified="2020-10-31T01:53:03.023Z" agent="5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.49.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" version="13.6.5" etag="ifz5WIyBIxYxWI06fxmT">
+    <diagram id="NHHUhpNoY5yi3r9DMVIQ" name="第 1 页">
+        <mxGraphModel dx="734" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="View&lt;br&gt;Vue+Vue CLI+VantUI+Vue Router" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="150" width="460" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Controller&lt;br&gt;SpringBoot SpringBoot Starter" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="260" width="290" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="ThirdPart Service&lt;br&gt;CDN DDOS Redis Cluster" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="490" y="260" width="150" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="DAO&lt;br&gt;ORM:Mybatis" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="360" width="260" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Cache&lt;br&gt;Redis" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="360" width="110" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Message Queue" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;" vertex="1" parent="1">
+                    <mxGeometry x="290" y="360" width="90" height="80" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
